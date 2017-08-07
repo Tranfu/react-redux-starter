@@ -1,0 +1,53 @@
+{
+  "name": "react-redux-starter",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "webpack --env=dev --progress --profile --colors && webpack-dev-server",
+    "build:production": "webpack --env=production --progress --profile --colors"
+  },
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-eslint": "latest",
+    "babel-loader": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "babel-preset-stage-2": "latest",
+    "css-loader": "latest",
+    "eslint": "latest",
+    "eslint-config-airbnb": "latest",
+    "eslint-loader": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-react": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "file-loader": "latest",
+    "html-webpack-plugin": "latest",
+    "postcss-loader": "latest",
+    "style-loader": "latest",
+    "url-loader": "latest",
+    "webpack": "latest",
+    "webpack-dev-server": "latest",
+    "webpack-merge": "latest"
+  },
+  "dependencies": {
+    "animate.css": "latest",
+    "axios": "latest",
+    "babel-polyfill": "latest",
+    "bootstrap": "3",
+    "classnames": "latest",
+    "hover.css": "latest",
+    "normalize.css": "latest",
+    "nprogress": "latest",
+    "particles.js": "^2.0.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "react-router": "^3.0.2",
+    "react-router-redux": "latest",
+    "redux": "latest",
+    "redux-form": "latest",
+    "redux-logger": "latest",
+    "redux-thunk": "latest",
+    "sweetalert": "latest"
+  }
+}

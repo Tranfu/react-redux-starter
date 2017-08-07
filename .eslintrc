@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "linebreak-style": ["error", "windows"],
+    "max-len": ["error", 8000],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prefer-stateless-function": [0],
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  }
+}
