@@ -31,7 +31,7 @@ const store = createStore(
 // store.dispatch(push('/todo'))
 
 const history = syncHistoryWithStore(hashHistory, store)
-history.listen(location => console.log(location.pathname))
+// history.listen(location => console.log(location.pathname))
 
 const Root = ({ store }) => (
   <Provider store={store}>

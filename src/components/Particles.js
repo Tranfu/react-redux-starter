@@ -1,6 +1,6 @@
 import React from 'react'
 import 'particles.js'
-// import style from './Particles.css'
+import style from './Particles.css'
 
 export default class Particles extends React.Component {
 
@@ -119,7 +119,7 @@ export default class Particles extends React.Component {
 
   render() {
     return (
-      <div data-component="Particles">
+      <div data-component="Particles" className={style.Particles}>
         <div id="particles-js"></div>
       </div>
     )

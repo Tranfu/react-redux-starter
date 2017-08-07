@@ -7,6 +7,7 @@ const commonConfig = require('./base.js');
 module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     devServer: {
+      contentBase: './dist',
       port:8080,
       proxy: {
         '/api': {
@@ -25,8 +26,8 @@ module.exports = function(env) {
               {
                 loader: 'css-loader',
                 options: {
-                  importLoaders: 1,
                   modules: true,
+                  importLoaders: 1,
                   localIdentName: '[name]__[local]--[hash:base64:5]'
                 }
               },

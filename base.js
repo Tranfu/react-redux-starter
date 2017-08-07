@@ -1,8 +1,9 @@
 /* eslint-disable */
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = function () {
   return {
@@ -28,9 +29,10 @@ module.exports = function () {
         // 'dragula',
       ]
     },
+    devtool: 'inline-source-map',
     output: {
       filename: 'js/[name].[chunkhash].js',
-      path: path.resolve(__dirname, '../dist')
+      path: path.resolve(__dirname, 'dist')
     },
     module: {
       rules: [
@@ -55,6 +57,7 @@ module.exports = function () {
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'] // Specify the common bundle's name.
       }),
+      new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({
         template: './index.html',
         chunksSortMode: 'dependency'

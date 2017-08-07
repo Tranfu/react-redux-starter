@@ -2,8 +2,10 @@
   "name": "react-redux-starter",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --env=dev --progress --profile --colors && webpack-dev-server",
-    "build:production": "webpack --env=production --progress --profile --colors"
+    "watch": "webpack --progress --watch",
+    "start": "webpack-dev-server --open",
+    "build:dev": "webpack --env=dev --progress --profile --colors",
+    "build:dist": "webpack --env=production --progress --profile --colors"
   },
   "devDependencies": {
     "babel-core": "latest",
@@ -12,6 +14,7 @@
     "babel-preset-es2015": "latest",
     "babel-preset-react": "latest",
     "babel-preset-stage-2": "latest",
+    "clean-webpack-plugin": "latest",
     "css-loader": "latest",
     "eslint": "latest",
     "eslint-config-airbnb": "latest",

@@ -1,7 +1,7 @@
 function buildConfig(env) {
-  let e = env;
-  if (!env) e = 'dev';
-  return require(`./config/${e}.js`)(env); // eslint-disable-line
+  let e = env
+  if (!env) e = 'dev'
+  return require(`./webpack.${e}.config.js`)(env)
 }
 
 module.exports = buildConfig;

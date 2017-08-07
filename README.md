@@ -13,7 +13,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install --global yarn
 yarn config set registry https://registry.npm.taobao.org
 yarn install
-yarn build:dev
+yarn start
 ```
 
 Now open up [http://localhost:8080](http://localhost:8080)
