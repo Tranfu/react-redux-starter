@@ -18,8 +18,8 @@ yarn build:dev
 
 Now open up [http://localhost:8080](http://localhost:8080)
 
-You should see a "hello react-redux-starter" message in the browser.
+You should see a "Brand" message in the browser.
 
 ## Make Some Changes
 
-Open up `./pages/HelloMessage.js` and change the text to something like "hi react-redux-starter". The browser automatically reloads with your new code.
+Open up `./pages/Home.js` and change the text to something like "react-redux-starter". The browser automatically reloads with your new code.
