@@ -41,7 +41,7 @@
     "hover.css": "latest",
     "normalize.css": "latest",
     "nprogress": "latest",
-    "particles.js": "^2.0.0",
+    "particles.js": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "latest",

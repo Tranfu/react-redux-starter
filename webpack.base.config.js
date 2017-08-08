@@ -9,7 +9,7 @@ module.exports = function () {
   return {
     entry: {
       index: './src/index.js',
-      vendor: [
+      vendors: [
         'babel-polyfill',
         'react',
         'react-dom',
@@ -29,7 +29,6 @@ module.exports = function () {
         // 'dragula',
       ]
     },
-    devtool: 'inline-source-map',
     output: {
       filename: 'js/[name].[chunkhash].js',
       path: path.resolve(__dirname, 'dist')
@@ -37,31 +36,32 @@ module.exports = function () {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           // use: ['babel-loader', 'eslint-loader'],
           use: ['babel-loader'],
           exclude: /node_modules/
         },
         {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 100000,
-            name: 'assets/[hash].[ext]'
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 100000,
+              name: 'assets/[hash].[ext]'
+            }
           }
         }
       ]
     },
     plugins: [
-      new ExtractTextPlugin('css/[name].[contenthash].css'),
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'manifest'] // Specify the common bundle's name.
-      }),
       new CleanWebpackPlugin(['dist']),
+      new ExtractTextPlugin('css/[name].[contenthash].css'),
       new HtmlWebpackPlugin({
         template: './index.html',
-        chunksSortMode: 'dependency'
-      })
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendors', 'manifest']
+      }),
     ]
   };
 }

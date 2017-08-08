@@ -1,8 +1,8 @@
 /* eslint-disable */
-const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const commonConfig = require('./base.js');
+const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const commonConfig = require('./webpack.base.config.js')
 
 module.exports = function(env) {
   return webpackMerge(commonConfig(), {
