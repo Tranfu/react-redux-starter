@@ -1,4 +1,5 @@
 import React from 'react'
+import TwitterHeart from './TwitterHeart'
 import style from './Theme.css'
 
 export default class Theme extends React.Component {
@@ -6,25 +7,49 @@ export default class Theme extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      theme: 'slate'
+      theme: 'default'
     }
   }
 
-  handleChange({target}) {
-    this.setState({theme: target.value})
-    const theme = target.value
-    let url = ''
-    if (theme === 'default') {
-      url = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'
-    } else {
-      url = `https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/${theme}/bootstrap.min.css`
-    }
-    let $prelink = $('link[data-theme]')
-    setTimeout(function () {
-      $prelink.remove()
-    }, 1000);
-    const $link = $(`<link rel="stylesheet" href=${url} data-theme>`)
-    $link.appendTo($('head'))
+  // handleChange({target}) {
+  //   this.setState({theme: target.value})
+  //   const theme = target.value
+  //   let url = ''
+  //   if (theme === 'default') {
+  //     url = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'
+  //   } else {
+  //     url = `https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/${theme}/bootstrap.min.css`
+  //   }
+  //   let $prelink = $('link[data-theme]')
+  //   setTimeout(function () {
+  //     $prelink.remove()
+  //   }, 3000);
+  //   const $link = $(`<link rel="stylesheet" href=${url} data-theme>`)
+  //   $link.appendTo($('head'))
+  // }
+
+  handleClick() {
+    clearTimeout(this.timeout)
+    this.timeout = setTimeout(() => {
+      this.setState((prevState, props) => {
+        const theme = prevState.theme
+        let url = ''
+        if (theme === 'slate') {
+          url = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'
+        } else {
+          url = 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css'
+        }
+        let $prelink = $('link[data-theme]')
+        setTimeout(function () {
+          $prelink.remove()
+        }, 3000);
+        const $link = $(`<link rel="stylesheet" href=${url} data-theme>`)
+        $link.appendTo($('head'))
+        return {
+          theme: prevState.theme === 'default' ? 'slate' : 'default'
+        }
+      })
+    }, 1000)
   }
 
   render() {
@@ -51,7 +76,9 @@ export default class Theme extends React.Component {
     return (
       <div data-name="Theme" className={style.Theme}>
         <div className={style.lightBox}>
-          <i className="fa fa-lightbulb-o fa-6" aria-hidden="true" style={{fontSize:'30px'}}></i>
+          <TwitterHeart>
+            <i className="fa fa-lightbulb-o fa-6" aria-hidden="true" style={{fontSize:'30px'}} onClick={() => this.handleClick()}></i>
+          </TwitterHeart>
         </div>
         {
           // <select
