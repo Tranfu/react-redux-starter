@@ -58,7 +58,7 @@ module.exports = function () {
           use: {
             loader: 'url-loader',
             options: {
-              limit: 100000,
+              limit: 100,
               name: 'assets/[hash].[ext]'
             }
           }

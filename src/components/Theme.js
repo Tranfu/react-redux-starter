@@ -50,12 +50,17 @@ export default class Theme extends React.Component {
     ]
     return (
       <div data-name="Theme" className={style.Theme}>
-        <select
-          className="form-control"
-          value={this.state.theme}
-          onChange={e => this.handleChange(e)}>
-          {themes.map((theme, index) => <option key={index} value={theme}>{theme}</option>)}
-        </select>
+        <div className={style.lightBox}>
+          <i className="fa fa-lightbulb-o fa-6" aria-hidden="true" style={{fontSize:'30px'}}></i>
+        </div>
+        {
+          // <select
+          //   className="form-control"
+          //   value={this.state.theme}
+          //   onChange={e => this.handleChange(e)}>
+          //   {themes.map((theme, index) => <option key={index} value={theme}>{theme}</option>)}
+          // </select>
+        }
       </div>
     )
   }

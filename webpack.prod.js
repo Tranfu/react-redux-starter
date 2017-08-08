@@ -20,7 +20,8 @@ module.exports = function(env) {
                 modules: true,
               }
             },
-            'postcss-loader'
+            'sass-loader',
+            'postcss-loader',
           ],
           publicPath: '../'
         })
