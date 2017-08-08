@@ -1,6 +1,6 @@
 /* eslint-disable */
-const webpack = require('webpack')
 const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -42,6 +42,18 @@ module.exports = function () {
           exclude: /node_modules/
         },
         {
+          test: /\.css$/,
+          // include: /node_modules/,
+          include: [
+            path.resolve(__dirname, 'node_modules')
+          ],
+          use: ExtractTextPlugin.extract({
+            publicPath: '../',
+            fallback: 'style-loader',
+            use: ['css-loader', 'sass-loader', 'postcss-loader'],
+          })
+        },
+        {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
           use: {
             loader: 'url-loader',
@@ -55,13 +67,11 @@ module.exports = function () {
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
+      new webpack.HashedModuleIdsPlugin(),
+      new HtmlWebpackPlugin({template: './index.html'}),
       new ExtractTextPlugin('css/[name].[contenthash].css'),
-      new HtmlWebpackPlugin({
-        template: './index.html',
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendors', 'manifest']
-      }),
+      new webpack.optimize.CommonsChunkPlugin({name: 'vendors'}),
+      new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
     ]
   };
 }

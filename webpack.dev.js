@@ -2,24 +2,25 @@
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const commonConfig = require('./webpack.base.config.js')
+const commonConfig = require('./webpack.common.js')
 
 module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     devServer: {
-      contentBase: './dist',
       port:8080,
       proxy: {
         '/api': {
           target: 'http://localhost:20000',
           pathRewrite: {'^/api' : ''}
         }
-      }
+      },
+      contentBase: './dist',
     },
     module: {
       rules: [
         {
           test: /\.css$/,
+          exclude: /node_modules/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
@@ -31,7 +32,8 @@ module.exports = function(env) {
                   localIdentName: '[name]__[local]--[hash:base64:5]'
                 }
               },
-              'postcss-loader'
+              'sass-loader',
+              'postcss-loader',
             ],
             publicPath: '../'
           })

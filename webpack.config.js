@@ -1,7 +1,7 @@
 function buildConfig(env) {
   let e = env
   if (!env) e = 'dev'
-  return require(`./webpack.${e}.config.js`)(env)
+  return require(`./webpack.${e}.js`)(env)
 }
 
-module.exports = buildConfig;
+module.exports = buildConfig

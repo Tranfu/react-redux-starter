@@ -1,0 +1,8 @@
+:global {
+  .dn {
+    display: none;
+  }
+  .test {
+    background-image: url(../images/girl.png);
+  }
+}
