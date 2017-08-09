@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import TwitterHeart from './TwitterHeart'
 import style from './Theme.css'
 
@@ -8,6 +9,17 @@ export default class Theme extends React.Component {
     super(props)
     this.state = {
       theme: 'default'
+    }
+  }
+
+  componentDidMount() {
+    const hour = moment().hour()
+    if (hour > 9 && hour < 18) {
+      this.setState({theme: 'default'})
+      $('link[data-theme="black"]').remove()
+    } else {
+      this.setState({theme: 'slate'})
+      $('link[data-theme="white"]').remove()
     }
   }
 
@@ -75,7 +87,7 @@ export default class Theme extends React.Component {
     ]
     return (
       <div data-name="Theme" className={style.Theme}>
-        <div className={style.lightBox}>
+        <div className={style.lightBox} title={this.state.theme === 'default' ? '关灯' : '开灯'}>
           <TwitterHeart>
             <i className="fa fa-lightbulb-o fa-6" aria-hidden="true" style={{fontSize:'30px'}} onClick={() => this.handleClick()}></i>
           </TwitterHeart>

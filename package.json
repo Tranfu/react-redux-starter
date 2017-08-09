@@ -41,6 +41,7 @@
     "bootstrap": "3",
     "classnames": "latest",
     "hover.css": "latest",
+    "moment": "^2.18.1",
     "normalize.css": "latest",
     "nprogress": "latest",
     "particles.js": "latest",
