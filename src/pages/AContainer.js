@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import A from './A'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     // todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     // onTodoClick: id => {
     //   dispatch(toggleTodo(id))

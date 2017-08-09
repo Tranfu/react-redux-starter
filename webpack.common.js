@@ -69,7 +69,7 @@ module.exports = function () {
     plugins: [
       new CleanWebpackPlugin(['dist']),
       new webpack.HashedModuleIdsPlugin(),
-      new HtmlWebpackPlugin({template: './index.html'}),
+      new HtmlWebpackPlugin({template: './src/index.html'}),
       new ExtractTextPlugin('css/[name].[contenthash].css'),
       new webpack.optimize.CommonsChunkPlugin({name: 'vendors'}),
       new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
