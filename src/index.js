@@ -1,5 +1,7 @@
 /* eslint-disable */
 import 'babel-polyfill'
+import '../vendors/jquery/jquery.min'
+import '../vendors/bootstrap/bootstrap.min'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'

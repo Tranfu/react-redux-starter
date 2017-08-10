@@ -40,7 +40,11 @@ module.exports = function () {
           test: /\.(js|jsx)$/,
           // use: ['babel-loader', 'eslint-loader'],
           use: ['babel-loader'],
-          exclude: /node_modules/
+          // exclude: /node_modules/,
+          exclude: [
+            path.resolve(__dirname, 'vendors'),
+            path.resolve(__dirname, 'node_modules')
+          ],
         },
         {
           test: /\.css$/,
@@ -63,7 +67,21 @@ module.exports = function () {
               name: 'assets/[hash].[ext]'
             }
           }
-        }
+        },
+        // copy js & css
+        {
+          test: /\.(js|css|png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          include: [
+            path.resolve(__dirname, 'vendors')
+          ],
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 1,
+              name: '[path][name].[ext]'
+            }
+          }
+        },
       ]
     },
     plugins: [
