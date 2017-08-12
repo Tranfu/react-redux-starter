@@ -1,4 +1,5 @@
 /* eslint-disable */
+const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -9,7 +10,14 @@ module.exports = function(env) {
     module: {
       rules: [{
         test: /\.css$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
+        // exclude: [
+        //   path.resolve(__dirname, 'vendors'),
+        //   path.resolve(__dirname, 'node_modules')
+        // ],
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [

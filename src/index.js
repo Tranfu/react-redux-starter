@@ -1,7 +1,8 @@
 /* eslint-disable */
-import 'babel-polyfill'
 import '../vendors/jquery/jquery.min'
-import '../vendors/bootstrap/bootstrap.min'
+import '../vendors/bootstrap/js/bootstrap.min'
+
+import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -20,6 +21,7 @@ const loggerMiddleware = createLogger({
   predicate: (getState, action) => !action.type.includes('@@'),
   collapsed: (getState, action, logEntry) => !logEntry.error,
 })
+
 const middleware = routerMiddleware(hashHistory)
 
 const store = createStore(
@@ -30,10 +32,8 @@ const store = createStore(
     loggerMiddleware // neat middleware that logs actions
   )
 )
-// store.dispatch(push('/todo'))
 
 const history = syncHistoryWithStore(hashHistory, store)
-// history.listen(location => console.log(location.pathname))
 
 const Root = ({ store }) => (
   <Provider store={store}>
@@ -48,5 +48,5 @@ const Root = ({ store }) => (
 
 render(<Root store={store} />, document.getElementById('root'))
 
-console.log(PRODUCTION) // eslint-disable-line
-console.log(SERVICE_URL) // eslint-disable-line
+// console.log(PRODUCTION)
+// console.log(SERVICE_URL)

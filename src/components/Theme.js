@@ -8,21 +8,21 @@ export default class Theme extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      theme: 'default'
+      theme: 'slate'
     }
   }
 
-  componentDidMount() {
-    const hour = moment().hour()
-    // if (hour > 9 && hour < 18) {
-    if (false) {
-      this.setState({theme: 'default'})
-      $('link[data-theme="black"]').remove()
-    } else {
-      this.setState({theme: 'slate'})
-      $('link[data-theme="white"]').remove()
-    }
-  }
+  // componentDidMount() {
+  //   const hour = moment().hour()
+  //   // if (hour > 9 && hour < 18) {
+  //   if (false) {
+  //     this.setState({theme: 'default'})
+  //     $('link[data-theme="black"]').remove()
+  //   } else {
+  //     this.setState({theme: 'slate'})
+  //     $('link[data-theme="white"]').remove()
+  //   }
+  // }
 
   // handleChange({target}) {
   //   this.setState({theme: target.value})
@@ -45,19 +45,17 @@ export default class Theme extends React.Component {
     clearTimeout(this.timeout)
     this.timeout = setTimeout(() => {
       this.setState((prevState, props) => {
-        const theme = prevState.theme
-        let url = ''
-        if (theme === 'slate') {
-          url = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'
+        if (prevState.theme === 'slate') {
+          $('head').append($(`<link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css" data-theme="white">`))
+          setTimeout(() => {
+            $('link[data-theme="black"]').remove()
+          }, 500)
         } else {
-          url = 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css'
+          $('head').append($(`<link rel="stylesheet" href="vendors/bootstrap/css/bootstrap-slate.min.css" data-theme="black">`))
+          setTimeout(() => {
+            $('link[data-theme="white"]').remove()
+          }, 500)
         }
-        let $prelink = $('link[data-theme]')
-        setTimeout(function () {
-          $prelink.remove()
-        }, 3000);
-        const $link = $(`<link rel="stylesheet" href=${url} data-theme>`)
-        $link.appendTo($('head'))
         return {
           theme: prevState.theme === 'default' ? 'slate' : 'default'
         }

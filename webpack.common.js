@@ -48,6 +48,9 @@ module.exports = function () {
         },
         {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          exclude: [
+            path.resolve(__dirname, 'vendors'),
+          ],
           use: {
             loader: 'url-loader',
             options: {
@@ -68,7 +71,7 @@ module.exports = function () {
            use: ['css-loader', 'sass-loader', 'postcss-loader'],
          })
         },
-        // copy js & css
+        // copy vendors js & css
         {
           test: /\.(js|css|png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
           include: [
