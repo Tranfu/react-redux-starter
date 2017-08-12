@@ -1,9 +1,9 @@
 /* eslint-disable */
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = function () {
   return {
@@ -47,18 +47,6 @@ module.exports = function () {
           ],
         },
         {
-          test: /\.css$/,
-          // include: /node_modules/,
-          include: [
-            path.resolve(__dirname, 'node_modules')
-          ],
-          use: ExtractTextPlugin.extract({
-            publicPath: '../',
-            fallback: 'style-loader',
-            use: ['css-loader', 'sass-loader', 'postcss-loader'],
-          })
-        },
-        {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
           use: {
             loader: 'url-loader',
@@ -67,6 +55,18 @@ module.exports = function () {
               name: 'assets/[hash].[ext]'
             }
           }
+        },
+        // handle css in node_modules
+        {
+         test: /\.css$/,
+         include: [
+           path.resolve(__dirname, 'node_modules')
+         ],
+         use: ExtractTextPlugin.extract({
+           publicPath: '../',
+           fallback: 'style-loader',
+           use: ['css-loader', 'sass-loader', 'postcss-loader'],
+         })
         },
         // copy js & css
         {
@@ -88,7 +88,7 @@ module.exports = function () {
       new CleanWebpackPlugin(['dist']),
       new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin({template: './src/index.html'}),
-      new ExtractTextPlugin('css/[name].[contenthash].css'),
+      new ExtractTextPlugin('css/index.[contenthash].css'),
       new webpack.optimize.CommonsChunkPlugin({name: 'vendors'}),
       new webpack.optimize.CommonsChunkPlugin({name: 'manifest'}),
     ]

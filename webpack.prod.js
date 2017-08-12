@@ -16,8 +16,8 @@ module.exports = function(env) {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
                 modules: true,
+                importLoaders: 1,
               }
             },
             'sass-loader',
@@ -35,8 +35,8 @@ module.exports = function(env) {
       new webpack.optimize.UglifyJsPlugin({
         beautify: false,
         comments: false,
-        compress: { screw_ie8: true, warnings: false },
         mangle: { screw_ie8: true, keep_fnames: true },
+        compress: { screw_ie8: true, warnings: false },
       }),
       new webpack.LoaderOptionsPlugin({minimize: true}),
     ]

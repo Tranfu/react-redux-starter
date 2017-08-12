@@ -7,7 +7,8 @@ const commonConfig = require('./webpack.common.js')
 module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     devServer: {
-      port:8080,
+      host: 'localhost',
+      port: 8080,
       proxy: {
         '/api': {
           target: 'http://localhost:20000',

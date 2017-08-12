@@ -14,7 +14,8 @@ export default class Theme extends React.Component {
 
   componentDidMount() {
     const hour = moment().hour()
-    if (hour > 9 && hour < 18) {
+    // if (hour > 9 && hour < 18) {
+    if (false) {
       this.setState({theme: 'default'})
       $('link[data-theme="black"]').remove()
     } else {
