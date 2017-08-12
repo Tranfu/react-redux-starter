@@ -22,11 +22,6 @@ module.exports = function(env) {
       rules: [
         {
           test: /\.css$/,
-          // exclude: /node_modules/,
-          // exclude: [
-          //   path.resolve(__dirname, 'vendors'),
-          //   path.resolve(__dirname, 'node_modules')
-          // ],
           include: [
             path.resolve(__dirname, 'src'),
           ],
