@@ -3,7 +3,6 @@ import NProgress from 'nprogress'
 import classnames from 'classnames'
 
 import Header from './Header'
-import Theme from './Theme'
 
 export default class App extends React.Component {
   render() {
@@ -17,7 +16,6 @@ export default class App extends React.Component {
           {childrenWithProps}
         </div>
         <footer className="col-lg-12"></footer>
-        <Theme />
       </div>
     )
   }

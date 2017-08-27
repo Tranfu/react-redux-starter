@@ -1,4 +1,5 @@
 import React from 'react'
+import TwitterHeart from './TwitterHeart'
 
 export default class Header extends React.Component {
 
@@ -30,9 +31,9 @@ export default class Header extends React.Component {
       'fadeInLeft',
       'fadeInLeftBig',
       'fadeInRight',
-      'fadeInRightBig',
+      // 'fadeInRightBig',
       'fadeInUp',
-      'fadeInUpBig',
+      // 'fadeInUpBig',
       'fadeOut',
       'fadeOutDown',
       'fadeOutDownBig',
@@ -93,6 +94,16 @@ export default class Header extends React.Component {
     return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
   }
 
+  handleClick({target}) {
+    const theme = $(target).text()
+    $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
+    setTimeout(() => {
+      if ($('link[data-theme]').length > 1) {
+        $('link[data-theme]:not(:last-of-type)').remove()
+      }
+    }, 1000 * 3);
+  }
+
   render() {
     return (
       <nav data-header="Header" className="navbar navbar-inverse">
@@ -104,8 +115,8 @@ export default class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#" style={{fontSize:'30px'}}>
-              Brand <span className="animated infinite pulse" id="redheart" style={{display:'inline-block',color:'rgb(233, 50, 45)'}}>❤</span>
+            <a className="navbar-brand" href="#">
+              Brand <span className="animated zoomIn" id="redheart" style={{display:'inline-block',color:'rgb(233, 50, 45)'}}>❤</span>
             </a>
           </div>
 
@@ -129,13 +140,27 @@ export default class Header extends React.Component {
             <ul className="nav navbar-nav navbar-right">
               <li><a href="#">Link</a></li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Themes <span className="caret"></span></a>
+                <ul className="dropdown-menu" onClick={e => this.handleClick(e)}>
+                  <li><a role="button">Default</a></li>
                   <li role="separator" className="divider"></li>
-                  <li><a href="#">Separated link</a></li>
+                  <li><a role="button">Cerulean</a></li>
+                  <li><a role="button">Cosmo</a></li>
+                  <li><a role="button">Cyborg</a></li>
+                  <li><a role="button">Darkly</a></li>
+                  <li><a role="button">Flatly</a></li>
+                  <li><a role="button">Journal</a></li>
+                  <li><a role="button">Lumen</a></li>
+                  <li><a role="button">Paper</a></li>
+                  <li><a role="button">Readable</a></li>
+                  <li><a role="button">Sandstone</a></li>
+                  <li><a role="button">Simplex</a></li>
+                  <li><a role="button">Slate</a></li>
+                  <li><a role="button">Solar</a></li>
+                  <li><a role="button">Spacelab</a></li>
+                  <li><a role="button">Superhero</a></li>
+                  <li><a role="button">United</a></li>
+                  <li><a role="button">Yeti</a></li>
                 </ul>
               </li>
             </ul>
