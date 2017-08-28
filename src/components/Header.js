@@ -1,4 +1,5 @@
 import React from 'react'
+import sweetalert from 'sweetalert'
 import TwitterHeart from './TwitterHeart'
 
 export default class Header extends React.Component {
@@ -86,6 +87,8 @@ export default class Header extends React.Component {
       const random = this.getRandomInt(0, 75)
       $('#redheart').removeClass().addClass('animated').addClass(classNames[random])
     }, 1000 * 10);
+
+    this.handleLastTheme()
   }
 
   getRandomInt(min, max) {
@@ -94,14 +97,39 @@ export default class Header extends React.Component {
     return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
   }
 
+  handleLastTheme() {
+    const theme = localStorage.getItem('__DEFAULT_THEME')
+    if (theme && theme !== 'Slate') {
+      sweetalert({
+        title: '正在设置自定义主题',
+        type: 'info',
+        timer: 3000,
+        showConfirmButton: false
+      })
+      $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
+      setTimeout(() => {
+        if ($('link[data-theme]').length > 1) {
+          $('link[data-theme]:not(:last-of-type)').remove()
+        }
+      }, 1000 * 3);
+    }
+  }
+
   handleClick({target}) {
+    sweetalert({
+      title: '玩命加载中...',
+      type: 'info',
+      timer: 5000,
+      showConfirmButton: false
+    })
     const theme = $(target).text()
     $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
+    localStorage.setItem('__DEFAULT_THEME', theme)
     setTimeout(() => {
       if ($('link[data-theme]').length > 1) {
         $('link[data-theme]:not(:last-of-type)').remove()
       }
-    }, 1000 * 3);
+    }, 1000 * 5);
   }
 
   render() {
