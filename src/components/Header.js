@@ -116,20 +116,23 @@ export default class Header extends React.Component {
   }
 
   handleClick({target}) {
-    sweetalert({
-      title: '玩命加载中...',
-      type: 'info',
-      timer: 5000,
-      showConfirmButton: false
-    })
-    const theme = $(target).text()
-    $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
-    localStorage.setItem('__DEFAULT_THEME', theme)
-    setTimeout(() => {
-      if ($('link[data-theme]').length > 1) {
-        $('link[data-theme]:not(:last-of-type)').remove()
-      }
-    }, 1000 * 5);
+    const $target = $(target)
+    if ($target.is('a')) {
+      sweetalert({
+        title: '玩命加载中...',
+        type: 'info',
+        timer: 5000,
+        showConfirmButton: false
+      })
+      const theme = $target.text()
+      $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
+      localStorage.setItem('__DEFAULT_THEME', theme)
+      setTimeout(() => {
+        if ($('link[data-theme]').length > 1) {
+          $('link[data-theme]:not(:last-of-type)').remove()
+        }
+      }, 1000 * 5);
+    }
   }
 
   render() {
