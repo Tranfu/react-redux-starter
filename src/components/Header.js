@@ -89,7 +89,7 @@ export default class Header extends React.Component {
     setInterval(() => {
       const random = this.getRandomInt(0, classNames.length)
       $('#redheart').removeClass().addClass('animated').addClass(classNames[random])
-    }, 1000 * 3);
+    }, 1000 * 10);
 
     this.handleLastTheme()
   }
@@ -114,7 +114,7 @@ export default class Header extends React.Component {
         if ($('link[data-theme]').length > 1) {
           $('link[data-theme]:not(:last-of-type)').remove()
         }
-      }, 1000 * 10);
+      }, 1000 * 3);
     }
   }
 
