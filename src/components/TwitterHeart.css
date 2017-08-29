@@ -43,7 +43,7 @@
   position: relative;
   /*color: #888;*/
   color: gray;
-  font-size: 2em;
+  font-size: 1em;
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
   -webkit-user-select: none;
