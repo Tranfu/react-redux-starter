@@ -1,10 +1,10 @@
+import React from 'react'
 import { connect } from 'react-redux'
-
-import APP from './App'
+import App from './App'
 
 const mapStateToProps = state => {
   return {
-
+    // language: state.app.language,
   }
 }
 
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(APP)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

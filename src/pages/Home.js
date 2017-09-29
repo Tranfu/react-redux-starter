@@ -1,12 +1,12 @@
 import React from 'react'
 import classnames from 'classnames'
-import Particles from '../components/Particles'
+import { FormattedMessage } from 'react-intl'
 
-export default class HelloMessage extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
-      <div data-page="Home">
-        <Particles />
+      <div>
+        <FormattedMessage id="hello" />
       </div>
     )
   }

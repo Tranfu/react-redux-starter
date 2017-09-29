@@ -1,7 +1,3 @@
-/* eslint-disable */
-import '../vendors/jquery/jquery.min'
-import '../vendors/bootstrap/js/bootstrap.min'
-
 import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
@@ -12,8 +8,10 @@ import { createStore, applyMiddleware } from 'redux'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 
+import copy from './misc/copy'
 import style from './css/style'
 import rootReducer from './reducers'
+import IntlzProviderContainer from './components/IntlzProviderContainer'
 import AppContainer from './components/AppContainer'
 import Home from './pages/Home'
 
@@ -37,12 +35,14 @@ const history = syncHistoryWithStore(hashHistory, store)
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={AppContainer} >
-        <IndexRoute component={Home} />
-        <Route path="home" component={Home} />
-      </Route>
-    </Router>
+    <IntlzProviderContainer>
+      <Router history={history}>
+        <Route path="/" component={AppContainer} >
+          <IndexRoute component={Home} />
+          <Route path="home" component={Home} />
+        </Route>
+      </Router>
+    </IntlzProviderContainer>
   </Provider>
 )
 

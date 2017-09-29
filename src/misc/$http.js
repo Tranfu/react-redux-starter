@@ -28,12 +28,23 @@ const $http = {
         data: data ? data : {},
         cache: false,
       }).done(resp => {
-        resolve(typeof(resp) === 'string' ? JSON.parse(resp) : resp)
+        const data = typeof(resp) === 'string' ? JSON.parse(resp) : resp
+        if (data.code === 0) {
+          resolve(data)
+        } else {
+          sweetalert({
+            title: `Request Exception`,
+            type: 'error',
+            text: `${url}: ${data.message}`,
+            showConfirmButton: true
+          })
+        }
       }).fail(response => {
         sweetalert({
-          title: '出错啦！',
+          title: `Request Exception`,
           type: 'error',
-          showConfirmButton: true
+          text: `${url}: ${response.responseJSON.message}`,
+          showConfirmButton: true,
         })
         reject(typeof(response) === 'string' ? JSON.parse(response) : response)
       }).always(() => {

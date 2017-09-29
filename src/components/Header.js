@@ -1,112 +1,20 @@
 import React from 'react'
 import sweetalert from 'sweetalert'
-import TwitterHeart from './TwitterHeart'
+import { FormattedMessage } from 'react-intl'
 
 export default class Header extends React.Component {
 
   componentDidMount() {
-    const classNames = [
-      'bounce',
-      'flash',
-      'pulse',
-      'rubberBand',
-      // 'shake',
-      // 'headShake',
-      'swing',
-      'tada',
-      // 'wobble',
-      'jello',
-      'bounceIn',
-      // 'bounceInDown',
-      // 'bounceInLeft',
-      // 'bounceInRight',
-      // 'bounceInUp',
-      // 'bounceOut',
-      // 'bounceOutDown',
-      // 'bounceOutLeft',
-      // 'bounceOutRight',
-      // 'bounceOutUp',
-      // 'fadeIn',
-      // 'fadeInDown',
-      // 'fadeInDownBig',
-      // 'fadeInLeft',
-      // 'fadeInLeftBig',
-      // 'fadeInRight',
-      // 'fadeInRightBig',
-      // 'fadeInUp',
-      // 'fadeInUpBig',
-      // 'fadeOut',
-      // 'fadeOutDown',
-      // 'fadeOutDownBig',
-      // 'fadeOutLeft',
-      // 'fadeOutLeftBig',
-      // 'fadeOutRight',
-      // 'fadeOutRightBig',
-      // 'fadeOutUp',
-      // 'fadeOutUpBig',
-
-      // 'flipInX',
-      // 'flipInY',
-      // 'flipOutX',
-      // 'flipOutY',
-      // 'lightSpeedIn',
-      // 'lightSpeedOut',
-
-      // 'rotateIn',
-      // 'rotateInDownLeft',
-      // 'rotateInDownRight',
-      // 'rotateInUpLeft',
-      // 'rotateInUpRight',
-      // 'rotateOut',
-      // 'rotateOutDownLeft',
-      // 'rotateOutDownRight',
-      // 'rotateOutUpLeft',
-      // 'rotateOutUpRight',
-      'hinge',
-      // 'jackInTheBox',
-      // 'rollIn',
-      // 'rollOut',
-      // 'zoomIn',
-      // 'zoomInDown',
-      // 'zoomInLeft',
-      // 'zoomInRight',
-      // 'zoomInUp',
-      // 'zoomOut',
-      // 'zoomOutDown',
-      // 'zoomOutLeft',
-      // 'zoomOutRight',
-      // 'zoomOutUp',
-      // 'slideInDown',
-      // 'slideInLeft',
-      // 'slideInRight',
-      // 'slideInUp',
-      // 'slideOutDown',
-      // 'slideOutLeft',
-      // 'slideOutRight',
-      // 'slideOutUp',
-    ]
-
-    setInterval(() => {
-      const random = this.getRandomInt(0, classNames.length)
-      $('#redheart').removeClass().addClass('animated').addClass(classNames[random])
-    }, 1000 * 10);
-
     this.handleLastTheme()
-  }
-
-  getRandomInt(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
   }
 
   handleLastTheme() {
     const theme = localStorage.getItem('__DEFAULT_THEME')
-    if (theme && theme !== 'Slate') {
+    if (theme && theme !== 'Default') {
       sweetalert({
         title: '正在设置自定义主题',
         type: 'info',
-        timer: 3000,
+        timer: 1000,
         showConfirmButton: false
       })
       $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
@@ -138,7 +46,15 @@ export default class Header extends React.Component {
     }
   }
 
+  handleClickLanguage({target}) {
+    this.props.onSwitchLanguage($(target).attr('data-language'))
+  }
+
   render() {
+    const {
+      intl,
+      onTest,
+    } = this.props
     return (
       <nav data-header="Header" className="navbar navbar-inverse">
         <div className="container-fluid">
@@ -149,9 +65,7 @@ export default class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">
-              Brand <span className="animated zoomIn" id="redheart" style={{display:'inline-block',color:'rgb(233, 50, 45)'}}>❤</span>
-            </a>
+            <a className="navbar-brand" href="#" onClick={() => onTest()}>Brand {intl.formatMessage({id: 'hello'})}</a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -195,6 +109,13 @@ export default class Header extends React.Component {
                   <li><a role="button">Superhero</a></li>
                   <li><a role="button">United</a></li>
                   <li><a role="button">Yeti</a></li>
+                </ul>
+              </li>
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><FormattedMessage id="language" /> <span className="caret"></span></a>
+                <ul className="dropdown-menu" onClick={e => this.handleClickLanguage(e)}>
+                  <li><a role="button" data-language="zh_cn">中文</a></li>
+                  <li><a role="button" data-language="en_us">English</a></li>
                 </ul>
               </li>
             </ul>

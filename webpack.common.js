@@ -26,6 +26,7 @@ module.exports = function () {
         'nprogress',
         'sweetalert',
         'particles.js',
+        'react-intl',
         // 'intro.js',
         // 'dragula',
       ]
