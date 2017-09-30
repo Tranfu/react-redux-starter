@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onSwitchLanguage: language => {
       dispatch(switchLanguage(language))
+      localStorage.setItem('__DEFAULT_LANGUAGE', language)
     }
   }
 }

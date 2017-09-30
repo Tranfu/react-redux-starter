@@ -3,7 +3,7 @@ import {
 } from '../actions/app'
 
 const initialState = {
-  language: 'en_us',
+  language: localStorage.getItem('__DEFAULT_LANGUAGE') ? localStorage.getItem('__DEFAULT_LANGUAGE') : 'en_us',
 }
 
 export default function app(state = initialState, action) {
