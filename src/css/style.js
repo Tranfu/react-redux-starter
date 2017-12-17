@@ -4,6 +4,7 @@ import 'animate.css/animate.css'
 import 'hover.css/css/hover.css'
 import 'nprogress/nprogress.css'
 import 'sweetalert/dist/sweetalert.css'
+import 'toastr/build/toastr.css'
 // import 'dragula/dist/dragula.css'
 // import 'intro.js/introjs.css'
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import sweetalert from 'sweetalert'
 import { FormattedMessage } from 'react-intl'
+import cn from '../images/cn.png'
+import us from '../images/us.png'
 
 export default class Header extends React.Component {
 
@@ -11,12 +13,6 @@ export default class Header extends React.Component {
   handleLastTheme() {
     const theme = localStorage.getItem('__DEFAULT_THEME')
     if (theme && theme !== 'Default') {
-      sweetalert({
-        title: '正在设置自定义主题',
-        type: 'info',
-        timer: 1000,
-        showConfirmButton: false
-      })
       $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
       setTimeout(() => {
         if ($('link[data-theme]').length > 1) {
@@ -29,12 +25,6 @@ export default class Header extends React.Component {
   handleClick({target}) {
     const $target = $(target)
     if ($target.is('a')) {
-      sweetalert({
-        title: '玩命加载中...',
-        type: 'info',
-        timer: 5000,
-        showConfirmButton: false
-      })
       const theme = $target.text()
       $('head').append($(`<link rel="stylesheet" href="vendors/bootswatch/bootstrap.${theme}.min.css" data-theme>`))
       localStorage.setItem('__DEFAULT_THEME', theme)
@@ -42,21 +32,18 @@ export default class Header extends React.Component {
         if ($('link[data-theme]').length > 1) {
           $('link[data-theme]:not(:last-of-type)').remove()
         }
-      }, 1000 * 5);
+      }, 1000 * 3);
     }
-  }
-
-  handleClickLanguage({target}) {
-    this.props.onSwitchLanguage($(target).attr('data-language'))
   }
 
   render() {
     const {
       intl,
       onTest,
+      onSwitchLanguage,
     } = this.props
     return (
-      <nav data-header="Header" className="navbar navbar-inverse">
+      <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -86,7 +73,22 @@ export default class Header extends React.Component {
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Link</a></li>
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><FormattedMessage id="language" /> <span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                  <li onClick={() => onSwitchLanguage('en_us')}>
+                    <a role="button" data-language="en_us">
+                      <img src={us} /> English
+                    </a>
+                  </li>
+                  <li role="separator" className="divider"></li>
+                  <li onClick={() => onSwitchLanguage('zh_cn')}>
+                    <a role="button" data-language="zh_cn">
+                      <img src={cn} /> 中文
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Themes <span className="caret"></span></a>
                 <ul className="dropdown-menu" onClick={e => this.handleClick(e)}>
@@ -112,10 +114,17 @@ export default class Header extends React.Component {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><FormattedMessage id="language" /> <span className="caret"></span></a>
-                <ul className="dropdown-menu" onClick={e => this.handleClickLanguage(e)}>
-                  <li><a role="button" data-language="zh_cn">中文</a></li>
-                  <li><a role="button" data-language="en_us">English</a></li>
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Me <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a role="button" data-language="en_us">Help</a>
+                  </li>
+                  <li role="separator" className="divider"></li>
+                  <li>
+                    <a role="button" data-language="zh_cn">Sign Out</a>
+                  </li>
                 </ul>
               </li>
             </ul>

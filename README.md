@@ -4,11 +4,9 @@ First you'll need [Node.js](https://nodejs.org) and the package manager that com
 
 Once you've got that working, head to the command line where we'll set up our project.
 
-## Clone the Project
+## Start the Project
 
 ```
-git clone https://github.com/tranfu/react-redux-starter
-cd react-redux-starter
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install --global yarn
 yarn config set registry https://registry.npm.taobao.org

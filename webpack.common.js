@@ -25,8 +25,9 @@ module.exports = function () {
         'axios',
         'nprogress',
         'sweetalert',
-        'particles.js',
         'react-intl',
+        'jquery',
+        'toastr',
         // 'intro.js',
         // 'dragula',
       ]

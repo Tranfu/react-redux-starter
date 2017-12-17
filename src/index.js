@@ -15,6 +15,12 @@ import IntlzProviderContainer from './components/IntlzProviderContainer'
 import AppContainer from './components/AppContainer'
 import Home from './pages/Home'
 
+import toastr from 'toastr'
+
+toastr.options = {
+  positionClass: 'toast-bottom-left',
+}
+
 const loggerMiddleware = createLogger({
   predicate: (getState, action) => !action.type.includes('@@'),
   collapsed: (getState, action, logEntry) => !logEntry.error,
