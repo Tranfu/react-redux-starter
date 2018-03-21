@@ -1,5 +1,4 @@
 import React from 'react'
-import sweetalert from 'sweetalert'
 import { FormattedMessage } from 'react-intl'
 import cn from '../images/cn.png'
 import us from '../images/us.png'

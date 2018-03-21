@@ -8,18 +8,12 @@ import { createStore, applyMiddleware } from 'redux'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 
-import copy from './misc/copy'
+import './misc/import'
 import style from './css/style'
 import rootReducer from './reducers'
 import IntlzProviderContainer from './components/IntlzProviderContainer'
 import AppContainer from './components/AppContainer'
 import Home from './pages/Home'
-
-import toastr from 'toastr'
-
-toastr.options = {
-  positionClass: 'toast-bottom-left',
-}
 
 const loggerMiddleware = createLogger({
   predicate: (getState, action) => !action.type.includes('@@'),
@@ -54,5 +48,4 @@ const Root = ({ store }) => (
 
 render(<Root store={store} />, document.getElementById('root'))
 
-// console.log(PRODUCTION)
-// console.log(SERVICE_URL)
+console.log(`the current environment is ${process.env.NODE_ENV}`)

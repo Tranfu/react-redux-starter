@@ -1,6 +1,3 @@
-import NProgress from 'nprogress'
-import sweetalert from 'sweetalert'
-
 const $http = {
 
   get(url, data) {
@@ -20,10 +17,9 @@ const $http = {
   },
 
   request(url, data, type) {
-    NProgress.start()
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${SERVICE_URL}${url}`,
+        url: `${url}`,
         type: type,
         data: data ? data : {},
         cache: false,
@@ -32,23 +28,13 @@ const $http = {
         if (data.code === 0) {
           resolve(data)
         } else {
-          sweetalert({
-            title: `Request Exception`,
-            type: 'error',
-            text: `${url}: ${data.message}`,
-            showConfirmButton: true
-          })
+
         }
       }).fail(response => {
-        sweetalert({
-          title: `Request Exception`,
-          type: 'error',
-          text: `${url}: ${response.responseJSON.message}`,
-          showConfirmButton: true,
-        })
+
         reject(typeof(response) === 'string' ? JSON.parse(response) : response)
       }).always(() => {
-        NProgress.done()
+
       })
     });
   },

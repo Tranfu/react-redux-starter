@@ -8,32 +8,33 @@ const commonConfig = require('./webpack.common.js')
 module.exports = function(env) {
   return webpackMerge(commonConfig(), {
     module: {
-      rules: [{
-        test: /\.css$/,
-        include: [
-          path.resolve(__dirname, 'src'),
-        ],
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1,
-              }
-            },
-            'sass-loader',
-            'postcss-loader',
+      rules: [
+        {
+          test: /\.css$/,
+          include: [
+            path.resolve(__dirname, 'src'),
           ],
-          publicPath: '../'
-        })
-      }]
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  importLoaders: 1,
+                }
+              },
+              'sass-loader',
+              'postcss-loader',
+            ],
+            publicPath: '../'
+          })
+        },
+      ]
     },
     plugins: [
       new webpack.DefinePlugin({
-        'PRODUCTION': JSON.stringify(true),
-        'SERVICE_URL': JSON.stringify('/'),
+        'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       new webpack.optimize.UglifyJsPlugin({
         beautify: false,

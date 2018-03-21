@@ -23,13 +23,7 @@ module.exports = function () {
         'classnames',
         'moment',
         'axios',
-        'nprogress',
-        'sweetalert',
         'react-intl',
-        'jquery',
-        'toastr',
-        // 'intro.js',
-        // 'dragula',
       ]
     },
     output: {

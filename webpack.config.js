@@ -1,6 +1,6 @@
 function buildConfig(env) {
   let e = env
-  if (!env) e = 'dev'
+  if (!env) e = 'development'
   return require(`./webpack.${e}.js`)(env)
 }
 
